@@ -1,0 +1,39 @@
+version: "3.5"
+services:
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    container_name: mariadb
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      MARIADB_DATABASE: bloodpressurereports01
+      MARIADB_USER: bpr01
+      MARIADB_PASSWORD: Monastery-Harpist-Shone3
+  web:
+    image: php:apache
+    restart: always
+    container_name: web
+    volumes:
+      - ./html:/var/www/html
+    build: 
+      context: .
+      dockerfile: web.dockerfile
+    depends_on:
+      - mariadb
+    restart: always
+    ports:
+      - 8080:80
+    links:
+      - mariadb
+    stdin_open: true
+    tty: true
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    container_name: phpmyadmin
+    ports:
+      - 8070:80
+    environment:
+      - PMA_ARBITRARY=1
