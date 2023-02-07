@@ -1,17 +1,43 @@
-<!doctype html>
-<?php require('./inc/functions.php'); ?>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home Blood Pressure Record Sheet</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    </head>
-    <body class="bg-dark text-light">
+<?php require('./inc/header.php'); ?>
         <div class="container">
-            <h1>Home Blood Pressure Record Sheet</h1>
-            <p>Complete the table below with your blood pressure records.</p>
-            <button type="button" class="btn btn-primary"><i class="fa-solid fa-table-list"></i> New entry</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEntryModal"><i class="fa-solid fa-table-list"></i> New entry</button>
+        </div>
+        <div class="modal fade" id="NewEntryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">New entry</h1>
+                        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">Systolic first</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Systolic first">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">Diastolic first</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Diastolic first">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">Systolic second</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Systolic second">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">Diastolic second</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Diastolic second">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">Pulse</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Pulse">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container">
             <?php $data = GetData();?>
@@ -24,11 +50,31 @@
                         <th scope="col">Systolic second</th>
                         <th scope="col">Diastolic second</th>
                         <th scope="col">Pulse</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if ($data->num_rows > 0) {
                         while($row = $data->fetch_assoc()) {?>
+                            <div class="modal fade" id="DeleteEntryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content bg-dark text-light">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete entry</h1>
+                                            <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <p>Are you sure you want to delete this entry?</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <a href="delete.php?id=<?php echo $row["id"]; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <tr>
                                 <td><?php echo $row["datetime"];?></td>
                                 <td><?php echo $row["systolic_1"];?></td>
@@ -36,9 +82,10 @@
                                 <td><?php echo $row["systolic_2"];?></td>
                                 <td><?php echo $row["diastolic_2"];?></td>
                                 <td><?php echo $row["pulse"];?></td>
+                                <td><a class="text-danger" href="#" data-bs-toggle="modal" data-bs-target="#DeleteEntryModal"><i class="fa-solid fa-trash-can"></i></a></td>
+                            </tr>   
                         <?php }
-                        } ?>
-                    </tr>
+                    } ?>
                 </tbody>
             </table>
         </div>
