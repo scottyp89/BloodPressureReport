@@ -50,4 +50,37 @@ function DeleteData($id){
     }
     CloseDB($conn);
 }
+
+function CheckDBExists(){
+    $conn = ConnectToDB();
+    $sql = "SHOW TABLES";
+    $tables = $conn->query($sql);
+    if ($tables->num_rows > 0) {
+        while($row = $tables->fetch_assoc()) {
+            if ($row["Tables_in_bloodpressurereports01"] === 'entries') {
+                return "1";
+            } 
+        }
+    }
+    CloseDB($conn);
+}
+
+function CreateTable(){
+    $conn = ConnectToDB();
+    $sql = "CREATE TABLE `entries` (
+        `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `datetime` datetime NOT NULL DEFAULT current_timestamp(),
+        `systolic_1` int(11) NOT NULL,
+        `diastolic_1` int(11) NOT NULL,
+        `systolic_2` int(11) NOT NULL,
+        `diastolic_2` int(11) NOT NULL,
+        `pulse` int(11) NOT NULL
+      )";
+    if ($conn->query($sql) === TRUE) {
+        return ("1");
+    } else {
+        return ("Error: " . $sql . "<br>" . $conn->error);
+    }
+    CloseDB($conn);
+}
 ?>

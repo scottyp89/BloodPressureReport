@@ -10,31 +10,32 @@
                         <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
-                        <div class="mb-3">
-                            <label for="formGroupExampleInput" class="form-label">Systolic first</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Systolic first">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formGroupExampleInput2" class="form-label">Diastolic first</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Diastolic first">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formGroupExampleInput" class="form-label">Systolic second</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Systolic second">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formGroupExampleInput2" class="form-label">Diastolic second</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Diastolic second">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formGroupExampleInput2" class="form-label">Pulse</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Pulse">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <form action="save.php" method="post">
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Systolic first</label>
+                                <input type="text" class="form-control" name="systolic_1" id="systolic_1" placeholder="Systolic first">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Diastolic first</label>
+                                <input type="text" class="form-control" name="diastolic_1" id="diastolic_1" placeholder="Diastolic first">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Systolic second</label>
+                                <input type="text" class="form-control" name="systolic_2" id="systolic_2" placeholder="Systolic second">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Diastolic second</label>
+                                <input type="text" class="form-control" name="diastolic_2" id="diastolic_2" placeholder="Diastolic second">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Pulse</label>
+                                <input type="text" class="form-control" name="pulse" id="pulse" placeholder="Pulse">
+                            </div>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
