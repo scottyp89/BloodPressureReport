@@ -42,7 +42,7 @@
         </div>
         <div class="container">
             <?php $data = GetData();?>
-            <table class="table table-striped table-dark table-hover">
+            <table class="table table-striped table-dark table-hover table-responsive">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
