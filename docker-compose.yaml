@@ -24,7 +24,7 @@ services:
       - mariadb
     restart: always
     ports:
-      - 8080:80
+      - 8880:80
     links:
       - mariadb
     stdin_open: true
