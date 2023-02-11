@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive-sm">
             <?php $data = GetData();?>
             <table class="table table-striped table-dark table-hover">
                 <thead>
