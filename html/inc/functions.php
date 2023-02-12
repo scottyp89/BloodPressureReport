@@ -1,10 +1,11 @@
 <?php
+
 function ConnectToDB() {
     // Connection details
     $servername = "mariadb";
-    $username = "bpr01";
-    $password = "Monastery-Harpist-Shone3";
-    $dbname = "bloodpressurereports01";
+    $username = getenv('MARIADB_USER', true) ?: getenv('MARIADB_USER');
+    $password = getenv('MARIADB_PASSWORD', true) ?: getenv('MARIADB_PASSWORD');
+    $dbname = getenv('MARIADB_DATABASE', true) ?: getenv('MARIADB_DATABASE');
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +15,6 @@ function ConnectToDB() {
         die("Connection to database failed: " . $conn->connect_error);
     } 
     return ($conn);
-    // echo "Connected successfully";
 }
 
 function CloseDB($conn){

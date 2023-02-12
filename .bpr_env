@@ -1,0 +1,3 @@
+MARIADB_DATABASE: bloodpressurereports01
+MARIADB_USER: bpr01
+MARIADB_PASSWORD: <insert password here>

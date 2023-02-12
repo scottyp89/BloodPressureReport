@@ -10,13 +10,12 @@
     <body class="bg-dark text-light">
         <div class="container">
             <h1>Home Blood Pressure Record Sheet</h1>
-            <p>Complete the table below with your blood pressure records.</p>
         </div>
         <?php if (CheckDBExists() !== "1") {?>
-        <div class="container">
-            <div class="alert alert-primary">
-                <p>The "entries" table is missing from the database, would you like to create it?</p>
-                <p><a href="create.php"><button class="btn btn-primary">Yes</button></a>
+            <div class="container">
+                <div class="alert alert-primary">
+                    <p>The "entries" table is missing from the database, would you like to create it?</p>
+                    <p><a href="create.php"><button class="btn btn-primary">Yes</button></a>
+                </div>
             </div>
-        </div>
         <?php } ?>

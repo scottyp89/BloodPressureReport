@@ -1,5 +1,7 @@
 <?php require('./inc/header.php'); ?>
+        <?php if (CheckDBExists() === "1") {?>
         <div class="container">
+            <p>Complete the table below with your blood pressure records.</p>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEntryModal"><i class="fa-solid fa-table-list"></i> New entry</button>
         </div>
         <div class="modal fade" id="NewEntryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -96,5 +98,6 @@
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+        <?php } ?>
     </body>
 </html>

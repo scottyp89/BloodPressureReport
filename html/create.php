@@ -10,13 +10,7 @@ if ($result === "1") {
     <div class="container">
         <p>Redirecting to the main page. If you aren't redirected automatically, please click <a href="index.php">here</a>.</p>
     </div>
-    <script>
-        $(function () {
-            setTimeout(function() {
-                window.location.replace("index.php");
-            }, 5000);
-        });
-    </script>
+    <meta http-equiv="refresh" content="3;url=http://<?php echo $_SERVER['HTTP_HOST']; ?>" />
     <?php
 } else {
     ?>
