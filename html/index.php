@@ -42,6 +42,25 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="DeleteEntryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete entry</h1>
+                        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <p>Are you sure you want to delete this entry?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a id="btn_deleteconfirm" href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="table-responsive-sm">
                 <?php $data = GetData();?>
@@ -60,25 +79,6 @@
                     <tbody>
                         <?php if ($data->num_rows > 0) {
                             while($row = $data->fetch_assoc()) {?>
-                                <div class="modal fade" id="DeleteEntryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content bg-dark text-light">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete entry</h1>
-                                                <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <p>Are you sure you want to delete this entry?</p>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a href="delete.php?id=<?php echo $row["id"]; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <tr>
                                     <td><?php echo $row["datetime"];?></td>
                                     <td><?php echo $row["systolic_1"];?></td>
@@ -86,7 +86,7 @@
                                     <td><?php echo $row["systolic_2"];?></td>
                                     <td><?php echo $row["diastolic_2"];?></td>
                                     <td><?php echo $row["pulse"];?></td>
-                                    <td><a class="text-danger" href="#" data-bs-toggle="modal" data-bs-target="#DeleteEntryModal"><i class="fa-solid fa-trash-can"></i></a></td>
+                                    <td><a class="text-danger" href="#" data-bs-toggle="modal" data-rowid="<?php echo $row["id"];?>" data-bs-target="#DeleteEntryModal" id="btn_deleteentry"><i class="fa-solid fa-trash-can"></i></a></td>
                                 </tr>   
                             <?php }
                         } ?>
@@ -98,6 +98,12 @@
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+        <script>
+            $(document).on("click", "#btn_deleteentry", function () {
+                var rowid = $(this).attr('data-rowid');
+                $("#btn_deleteconfirm").attr( "href", 'delete.php?id=' + rowid );
+            });
+        </script>
         <?php } ?>
     </body>
 </html>
