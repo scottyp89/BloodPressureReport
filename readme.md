@@ -12,3 +12,4 @@ I'm going to assume you have some experience with Docker Compose to get this up 
 2. Update the .bpr_env file to include a password for the `MARIADB_PASSWORD` variable
 3. Run the compose stack with the build switch `docker-compose up -d --build`
 4. It will take a few seconds for the DB to get created, you will then get prompted to create the tables within the database, once that process has completed you can start entering data
+5. By default, the app will be accessible on `http://localhost:8080`
